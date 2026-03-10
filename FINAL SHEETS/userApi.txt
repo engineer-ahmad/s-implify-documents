@@ -1,0 +1,182 @@
+http://localhost:8080/api/user/getUser
+{
+    "userId": 6
+}
+Response:
+{
+    "userId": 6,
+    "userName": "superuser",
+    "email": "super@gmail.com",
+    "firstName": null,
+    "lastName": null,
+    "password": "superuser",
+    "groupId": 1,
+    "createdAt": null,
+    "createdBy": null,
+    "createdOn": null,
+    "updatedBy": null,
+    "updatedOn": null
+}
+
+http://localhost:8080/api/user/getGroups
+{}
+Response:
+[
+    {
+        "groupType": "superUser",
+        "groupId": 1,
+        "description": "Super User"
+    },
+    {
+        "groupType": "district",
+        "groupId": 2,
+        "description": "District"
+    },
+    {
+        "groupType": "principle",
+        "groupId": 3,
+        "description": "Principle"
+    },
+    {
+        "groupType": "instructor",
+        "groupId": 4,
+        "description": "Instructor"
+    }
+]
+
+http://localhost:8080/api/user/getUsersAgainstGroupId
+{
+    "groupId": 1
+}
+Response:
+[
+    {
+        "userId": 6,
+        "userName": "superuser",
+        "email": "super@gmail.com",
+        "firstName": null,
+        "lastName": null,
+        "password": "superuser",
+        "groupId": 1,
+        "createdAt": null,
+        "createdBy": null,
+        "createdOn": null,
+        "updatedBy": null,
+        "updatedOn": null
+    },
+    {
+        "userId": 7,
+        "userName": "testUser",
+        "email": "test@example.com",
+        "firstName": null,
+        "lastName": null,
+        "password": "password123",
+        "groupId": 1,
+        "createdAt": "2025-02-28T18:35:17.033+00:00",
+        "createdBy": null,
+        "createdOn": null,
+        "updatedBy": null,
+        "updatedOn": null
+    }
+]
+
+
+http://localhost:8080/api/user/getAllUsers
+{}
+Request:
+[
+    {
+        "userId": 6,
+        "userName": "superuser",
+        "email": "super@gmail.com",
+        "firstName": null,
+        "lastName": null,
+        "password": "superuser",
+        "groupId": 1,
+        "createdAt": null,
+        "createdBy": null,
+        "createdOn": null,
+        "updatedBy": null,
+        "updatedOn": null
+    },
+    {
+        "userId": 7,
+        "userName": "testUser",
+        "email": "test@example.com",
+        "firstName": null,
+        "lastName": null,
+        "password": "password123",
+        "groupId": 1,
+        "createdAt": "2025-02-28T18:35:17.033+00:00",
+        "createdBy": null,
+        "createdOn": null,
+        "updatedBy": null,
+        "updatedOn": null
+    },
+    {
+        "userId": 9,
+        "userName": "testPriciple",
+        "email": "test1@example.com",
+        "firstName": null,
+        "lastName": null,
+        "password": "password123",
+        "groupId": 2,
+        "createdAt": "2025-03-08T18:33:10.610+00:00",
+        "createdBy": null,
+        "createdOn": null,
+        "updatedBy": null,
+        "updatedOn": null
+    }
+]
+
+http://localhost:8080/api/user/updateUser
+{
+    "userId": 12,
+    "firstName": "Admin",
+    "lastName": "User",
+    "email": "adminUser@gmail.com",
+    "groupId": 1,
+    "password": "adminUser",
+    "userName": "adminUser"
+}
+Response:
+{
+    "userId": 12,
+    "userName": "adminUser",
+    "email": "adminUser@gmail.com",
+    "firstName": "Admin",
+    "lastName": "User",
+    "password": "adminUser",
+    "groupId": 1,
+    "createdAt": null,
+    "createdBy": null,
+    "createdOn": null,
+    "updatedBy": null,
+    "updatedOn": "2025-04-17T15:07:58.174+00:00"
+}
+
+http://localhost:8080/api/user/register
+{
+    //"userId": 12,
+    "firstName": "Admin",
+    "lastName": "User",
+    "email": "adminUser@gmail.com",
+    "groupId": 1,
+    "password": "adminUser",
+    "userName": "adminUser"
+}
+Response:
+{
+    "userId": 12,
+    "userName": "adminUser",
+    "email": "adminUser@gmail.com",
+    "firstName": "Admin",
+    "lastName": "User",
+    "password": "adminUser",
+    "groupId": 1,
+    "createdAt": null,
+    "createdBy": null,
+    "createdOn": null,
+    "updatedBy": null,
+    "updatedOn": "2025-04-17T15:07:58.174+00:00"
+}

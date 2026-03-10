@@ -1,0 +1,28 @@
+Prerequisites
+1. Admin user can create the state of USA
+2. Admin user can create the District against state.
+3. Admin can create Campuses agaist particular District. (Campus should be categories as Elementary School, High School etc and campus code will be RE, ME etc, admin can also input the Campus ID in a seperatly)
+4. There should be a system were admin can create the definition of quarters assocaited to that district. like abc districts has 4 quarters with name (Quarter 1, Quarter 2, etc)
+xyz district has 6 quarters.
+5. For years sets like 2024-2025, 2025-2026, 2026-2027 i have no idea how to manage that but all the data will also be assoaicated to the set of years, when we select the set of year from drop down let say 2025-2026, that particular data will be loaded on frontend.
+6. There should be students table, teachers table, campus, Grades etc
+7. There are multiple user roles 'SuperAdmin', 'DistrictAdmin', 'CampusAdmin', 'Teacher'
+
+
+Rule 1:
+Will get the growth sheet on every quarter from district which we will be uploaded from webportal and that data will be parsed and uploaded to the database.
+Make sure all the records will be properly entertained, Each sheet will be associted to the quarter no. let say quarter1, quarter2, 3, 4.
+also each results will also be associated to particular set of years, let say 2024-2025, 2025-2026 etc
+Teachers will be moved to seperate table, Students in to seperate table, i dont know where to put the students growth specific record, but that growth specific record will comes on every quarter
+But Grades table associated to the campus will also have seperate table.
+there is a chance that same teacher will teaches to different grades and different subject in same campus.
+
+
+Rule 2:
+We will get the CCMR sheet every month, So basically single sheet represents to a single month
+and month will be specify in the spreadSheet.
+
+Rule 3:
+Let say we already have students fetched from growth, So compare student CCMR IDs with Growth Students
+and then Save that data to CCMR.
+3. 

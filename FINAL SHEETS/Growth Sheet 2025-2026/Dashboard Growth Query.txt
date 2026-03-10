@@ -1,0 +1,35 @@
+SELECT
+    g.CURRENT_CAMPUS,
+    (
+        SELECT (SUM(gg.DCA_1_GROWTH) * 1.0 / COUNT(*)) * 100
+        FROM STUDENT_GROWTH_DATA gg
+        WHERE gg.CURRENT_CAMPUS = g.CURRENT_CAMPUS
+          AND gg.SUBJECT_COURSE NOT IN ('Biology', 'Science', 'Social Studies', 'US History')
+          AND gg.STAAR_SCORE_2024 != 0
+          AND gg.DCA_1 != 0
+          AND ('' = '' OR gg.SPECIAL_ED_INDICATOR = '')
+          AND ('' = '' OR gg.GRADE = '')
+          AND ('' = '' OR gg.ECONOMIC_DISADVANTAGE = '')
+          AND ('' = '' OR gg.EMERGENT_BILINGUAL = '')
+          AND ('' = '' OR gg.TEST_LANGUAGE = '')
+          AND ('' = '' OR gg.TESTING_INSTRUCTOR = '')
+          AND ('' = '' OR gg.ETHNICITY = '')
+          AND ('' = '' OR gg.SUBJECT_COURSE = '')
+    ) AS AvgGrowth,
+    ((
+        (SUM(g.DCA_1_APP) * 1.0 / COUNT(*)) +
+        (SUM(g.DCA_1_MEET) * 1.0 / COUNT(*)) +
+        (SUM(g.DCA_1_MASTER) * 1.0 / COUNT(*))
+    ) / 3) * 100 AS AvgPerformance
+FROM STUDENT_GROWTH_DATA g
+WHERE g.DCA_1 != 0
+  AND ('' = '' OR g.SPECIAL_ED_INDICATOR = '')
+  AND ('' = '' OR g.GRADE = '')
+  AND ('' = '' OR g.ECONOMIC_DISADVANTAGE = '')
+  AND ('' = '' OR g.EMERGENT_BILINGUAL = '')
+  AND ('' = '' OR g.TEST_LANGUAGE = '')
+  AND ('' = '' OR g.TESTING_INSTRUCTOR = '')
+  AND ('' = '' OR g.ETHNICITY = '')
+  AND ('' = '' OR g.SUBJECT_COURSE = '')
+  AND ('' = '' OR g.CURRENT_CAMPUS = '')
+GROUP BY g.CURRENT_CAMPUS;

@@ -1,0 +1,20 @@
+Prerequisites
+1. Admin user can create USA states (States table).
+2. Admin user can create Districts against a state (Districts → StateId).
+3. Admin can create Campuses against a particular District. Campus is categorized (CampusCategories: Elementary School, High School, etc.), has a campus code (RE, ME, etc.), and admin can input Campus ID separately (CampusIdExternal). Campuses table links to District and CampusCategory.
+4. Admin can create quarter definitions and associate them to districts. Quarter definitions use QuarterCode (BOY, PA1, PA2, MOY, PA3, PA4, PA5, EOY) and StartDate/EndDate. DistrictQuarters links districts to quarters; the same quarter definition can be associated to multiple districts. Different districts can have different numbers of quarters (e.g. 4 vs 6).
+5. Academic year sets (e.g. 2024-2025, 2025-2026) are stored in AcademicYears with YearLabel, StartDate, and EndDate. All data is tied to an academic year; when the user selects a year from the dropdown (e.g. 2025-2026), that year’s data is loaded on the frontend.
+6. Tables: Students, Teachers, Campuses, Grades. Grades are shared; CampusGrades links which grades are offered at which campus (many-to-many: same grade can be at multiple campuses, same campus can have multiple grades).
+7. User roles: SuperAdmin, DistrictAdmin, Principal (campus-level; was CampusAdmin), Teacher. Users table has RoleId and scope (DistrictId for DistrictAdmin, CampusId for Principal, TeacherId for Teacher).
+
+
+Rule 1 (Growth sheet):
+Growth sheets are received every quarter from the district, uploaded via the web portal, parsed, and stored in the database. Each upload is recorded in GrowthSheetUploads (linked to District, Campus, AcademicYearId, DistrictQuarterId). Teachers are stored in Teachers; Students in Students (identified by LocalId per Campus). Student growth–specific data (STAAR, quarter score, Delta, Growth, HB 1416, App, Meets, Masters, CS, etc.) is stored in StudentGrowthRecords: one row per student per subject per upload (hence per quarter and academic year). Grades are in Grades; CampusGrades associates grades to campuses. Same teacher can teach different grades and subjects at the same campus (TeacherCampusAssignments: Teacher + Campus + Grade + Subject + AcademicYear).
+
+
+Rule 2 (CCMR sheet):
+CCMR sheet is received every month. A single sheet represents a single month; the month is specified in the spreadsheet.
+
+
+Rule 3 (CCMR and Growth students):
+Students are already loaded from growth. Compare CCMR student IDs with Growth students (e.g. by LocalId or student identifier), then save the matched data to CCMR (CCMR-specific tables/storage as defined elsewhere).
